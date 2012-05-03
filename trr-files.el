@@ -55,7 +55,7 @@ $TRRSCORES or (setq TRR:record-dir \"...\")")
     (if (file-exists-p TRR:record-file)
 	(insert-file-contents TRR:record-file)
       (if TRR:japanese
-	  (insert "  0    0      0      0     0 ¤Õ¤¡¤¤¤È!\n")
+	  (insert "  0    0      0      0     0 $B$U$!$$$H(B!\n")
 	(insert "  0    0      0      0     0 cheers!  \n")))))
 
 
@@ -112,7 +112,7 @@ $TRRSCORES or (setq TRR:record-dir \"...\")")
 						    "text/"
 						    temp-file)))
 	     (error "%s does not exists!" temp-file))
-	 (message (if TRR:japanese "½é´ü²½¥Õ¥¡¥¤¥ë¤òºî¤Ã¤Æ¤ë¤Î¡£¤Á¤ç¤Ã¤È¤Þ¤Ã¤Æ¤Í¡£"
+	 (message (if TRR:japanese "$B=i4|2=%U%!%$%k$r:n$C$F$k$N!#$A$g$C$H$^$C$F$M!#(B"
 		    "Making preformatted file. please wait..."))
 	 (call-process TRR:format-program nil nil nil temp-file))
     (or (file-directory-p TRR:record-dir)
@@ -247,3 +247,7 @@ $TRRSCORES or (setq TRR:record-dir \"...\")")
 	(forward-line 1))
       (kill-buffer (current-buffer))
       maxp)))
+
+
+(provide 'trr-files)
+;;; trr-files.el ends here

@@ -14,14 +14,17 @@ installer = trr-installer@where.you.are
 japanese = t
 
 # Where TRR directory is found
-trrdir = /usr/local/lib/emacs/site-lisp/trr
+TRRDIR = /usr/local/trr
+
+# Where TRR directory is found
+LISPDIR=/usr/local/share/emacs/site-lisp
 
 # Where info files go.
-infodir = /usr/local/info
-#infodir = /usr/local/lib/emacs/info
+INFODIR = /usr/local/info
+#INFODIR = /usr/local/lib/emacs/info
 
 # Where TRR binary files go.
-bindir = /usr/local/bin
+BINDIR = /usr/local/bin
 
 # Name of your emacs binary
 EMACS = emacs
@@ -51,11 +54,10 @@ INSTALL = ./install-sh
 #INSTALL = /usr/bin/install
 #INSTALL = /usr/ucb/install
 
-# Using emacs in batch mode.
-BATCH = $(EMACS) -batch -q -no-site-file
-
 # Specify the byte-compiler for compiling TRR files
-ELC= $(BATCH) -f batch-byte-compile
+ELC = $(EMACS) -batch -q -no-site-file -eval\
+	'(setq load-path (cons (expand-file-name ".") load-path))'\
+	-f batch-byte-compile
 
 # Specify makeinfo program
 MAKEINFO = $(EMACS) -batch -l texinfmt -funcall batch-texinfo-format 
@@ -70,8 +72,8 @@ LDFLAGS =
 .SUFFIXES:
 .SUFFIXES: .el .elc .c .o .texi .info
 
-TEXT_DIR = $(trrdir)/text/
-RECORD_DIR = $(trrdir)/record/
+TEXT_DIR = $(TRRDIR)/text/
+RECORD_DIR = $(TRRDIR)/record/
 
 CFLAGS = $(OPTIONS) -DTEXT_DIR=\"$(TEXT_DIR)\" -DRECORD_DIR=\"$(RECORD_DIR)\" \
 	-DSED=\"$(SED)\" -DGREP=\"$(GREP)\"
@@ -94,7 +96,7 @@ TEXIFILES = trr.texi
 
 INFO = trr.info
 
-TEXTS = The_Constitution_Of_JAPAN Constitution_of_the_USA
+TEXTS = The_Constitution_Of_JAPAN Constitution_of_the_USA Iccad_90
 
 EXTRAFILES = Makefile README.euc ChangeLog
 
@@ -113,50 +115,56 @@ all: main
 main: elc $(SUBPROGS)
 
 install: main install-dir
-	for i in $(SUBPROGS); do $(INSTALL) -c -m 6755 $$i $(bindir); done
-	for i in $(TRRELC) CONTENTS; \
-		do $(INSTALL) -c -m 644 $$i $(trrdir); done
+	for i in $(SUBPROGS); do $(INSTALL) -c -m 6755 $$i $(BINDIR); done
+	$(INSTALL) -c -m 644 CONTENTS $(TRRDIR)
+	for i in $(TRRELC); \
+		do $(INSTALL) -c -m 644 $$i $(LISPDIR); done
 	(cd text; for i in $(TEXTS); \
-			do $(INSTALL) -c -m 644 $$i $(trrdir)/text; done)
-	$(INSTALL) -c -m 644 $(INFO) $(infodir)
+			do $(INSTALL) -c -m 644 $$i $(TRRDIR)/text; done)
+	$(INSTALL) -c -m 644 $(INFO) $(INFODIR)
 	@echo 
 	@echo "** TRR installation is almost completed."
 	@echo "**"
 	@echo "** Now edit \`CONTENTS' in the directory where you put"
-	@echo "** TRR files ($(trrdir)/), and insert"
-	@echo "** (autoload 'trr \"$(trrdir)/trr\" nil t)"
+	@echo "** TRR files ($(TRRDIR)/), and insert"
+	@echo "** (autoload 'trr \"$(TRRDIR)/trr\" nil t)"
 	@echo "** in your \`.emacs' or \`site-start.el' file."
-	@echo "** then edit $(infodir)/dir to add TRR entry."
+	@echo "** then edit $(INFODIR)/dir to add TRR entry."
 	@echo "**"
 	@echo "** You may want to add some texts to TRR text directory."
-	@echo "** Put them into $(trrdir)/text and edit \`CONTENTS'"
+	@echo "** Put them into $(TRRDIR)/text and edit \`CONTENTS'"
 	@echo
 
 install-dir:
-	if [ ! -d $(bindir) ]; \
-	then rm -f $(bindir); \
-	     mkdir $(bindir); \
-	     chmod 755 $(bindir); \
+	if [ ! -d $(BINDIR) ]; \
+	then rm -f $(BINDIR); \
+	     mkdir -p $(BINDIR); \
+	     chmod 755 $(BINDIR); \
 	fi
-	if [ ! -d $(trrdir) ]; \
-	then rm -f $(trrdir); \
-	     mkdir $(trrdir); \
-	     chmod 755 $(trrdir); \
+	if [ ! -d $(LISPDIR) ]; \
+	then rm -f $(LISPDIR); \
+	     mkdir -p $(LISPDIR); \
+	     chmod 755 $(LISPDIR); \
 	fi
-	if [ ! -d $(trrdir)/text ]; \
-	then rm -f $(trrdir)/text; \
-	     mkdir $(trrdir)/text; \
-	     chmod 755 $(trrdir)/text; \
+	if [ ! -d $(TRRDIR) ]; \
+	then rm -f $(TRRDIR); \
+	     mkdir -p $(TRRDIR); \
+	     chmod 755 $(TRRDIR); \
 	fi
-	if [ ! -d $(trrdir)/record ]; \
-	then rm -f $(trrdir)/record; \
-	     mkdir $(trrdir)/record; \
-	     chmod 755 $(trrdir)/record; \
+	if [ ! -d $(TRRDIR)/text ]; \
+	then rm -f $(TRRDIR)/text; \
+	     mkdir -p $(TRRDIR)/text; \
+	     chmod 755 $(TRRDIR)/text; \
 	fi
-	if [ ! -d $(infodir) ]; \
-	then rm -f $(infodir); \
-	     mkdir $(infodir); \
-	     chmod 755 $(infodir); \
+	if [ ! -d $(TRRDIR)/record ]; \
+	then rm -f $(TRRDIR)/record; \
+	     mkdir -p $(TRRDIR)/record; \
+	     chmod 755 $(TRRDIR)/record; \
+	fi
+	if [ ! -d $(INFODIR) ]; \
+	then rm -f $(INFODIR); \
+	     mkdir -p $(INFODIR); \
+	     chmod 755 $(INFODIR); \
 	fi
 
 .texi.info:
@@ -166,8 +174,8 @@ info: $(TEXIFILES)
 
 trr.el: trr.el.base
 	rm -f $@
-	$(SED)  -e 's,TRRELCINSTALLDIR,$(trrdir),' \
-		-e 's,TRRBININSTALLDIR,$(bindir),' \
+	$(SED)  -e 's,TRRELCINSTALLDIR,$(TRRDIR),' \
+		-e 's,TRRBININSTALLDIR,$(BINDIR),' \
 		-e 's,TRRINSTALLER,$(installer),' \
 		-e 's,TRRDEFAULTJAPANESE,$(japanese),' trr.el.base > $@
 

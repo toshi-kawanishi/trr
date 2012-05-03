@@ -4,17 +4,19 @@
 ;; This file is a part of TRR19, a type training package for Emacs19.
 ;; See the copyright notice in trr.el.base
 
+(require 'poe)
+
 (eval-when-compile
   ;; Shut Emacs' byte-compiler up
   (setq byte-compile-warnings '(redefine callargs)))
 
 ;; for now, there is only one type of session is supported.
 (defun TRR:get-event ()
-  (let ((ev (read-event)))
+  (let ((ev (TRR:read-event)))
     (while (listp ev)
-      (message (if TRR:japanese "§∫§Î§œ¬ÃÃ‹§¿§Ë§¶" "Don't play foul!"))
+      (message (if TRR:japanese "$B$:$k$OBLL\$@$h$&(B" "Don't play foul!"))
       (ding)
-      (setq ev (read-event)))
+      (setq ev (TRR:read-event)))
     (if (integerp ev)
 	(if (/= ev 12)
 	    ev
@@ -27,12 +29,23 @@
 	    ((eq ev 'escape) ?\e)
 	    (t ?\a)))))
 
+(defun TRR:read-event ()
+  (cond
+   ((fboundp 'read-event)
+    (read-event))
+   ((fboundp 'next-command-event)
+    (let (char)
+      (while (null (setq char (event-to-character
+			       (next-command-event)))))
+      (char-to-int char)))
+   (t
+    (error "no read-event"))))
 
 (defun TRR:one-session ()
   (other-window -1)
   (TRR:write-graph TRR:list-of-eval 0
 		   (if TRR:japanese
-		       "∫£≤Û§Œ∆¿≈¿•∞•È•’"
+		       "$B:#2s$NF@E@%0%i%U(B"
 		     "Score Graph for this time"))
   (other-window -1)
   (TRR:print-log)
@@ -59,9 +72,9 @@
 	  (lines (/ (count-lines (point-min) (point-max)) 3))
 	  (text-pos (save-excursion (forward-line -1) (point)))
 	  (started nil))
-      (message (if TRR:japanese "§Ë§¶§§!" "Ready!"))
+      (message (if TRR:japanese "$B$h$&$$(B!" "Ready!"))
       (setq TRR:ch (TRR:get-event))
-      (message (if TRR:japanese "•π•ø°º•»!" "start!"))
+      (message (if TRR:japanese "$B%9%?!<%H(B!" "start!"))
       (setq TRR:start-time (current-time-string))
       (while (and (> lines 0)
 		  (/= TRR:ch 18)   ;; if TRR:ch = ^R then restart
@@ -165,3 +178,6 @@
       (recenter -2)))
   (if (or TRR:typist-flag TRR:small-window-flag)
       (set-window-configuration TRR:win-conf)))
+
+(provide 'trr-sess)
+;;; trr-sess.el ends here

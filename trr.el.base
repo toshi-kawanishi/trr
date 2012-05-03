@@ -67,16 +67,16 @@
 If nil, coloring not support.")
 
 (defvar TRR:un-hyphenate t "whether deny hyphnenations")
-					; ¥Ï¥¤¥Õ¥Í¡¼¥·¥ç¥ó¤ò¾Ã¤¹¤«¤É¤¦¤«
+					; $B%O%$%U%M!<%7%g%s$r>C$9$+$I$&$+(B
 
 (defvar TRR:return-is-space nil "whether return & space is equal")
-					; ¥ê¥¿¡¼¥ó¤ò¥¹¥Ú¡¼¥¹¤ÇÂåÍÑ¤¹¤ë¤«¤É¤¦¤«
+					; $B%j%?!<%s$r%9%Z!<%9$GBeMQ$9$k$+$I$&$+(B
 
 (defvar TRR:ding-when-miss t "whether enabled to `ding' when miss type")
-					; ´Ö°ã¤¨¤¿»þ¤Ë ding ¤¹¤ë¤«¤É¤¦¤«
+					; $B4V0c$($?;~$K(B ding $B$9$k$+$I$&$+(B
 
 (defvar TRR:japanese TRR:default-japanese "if t, TRR talk to you in Japanese.")
-					; TRR¤Î¥á¥Ã¥»¡¼¥¸¤òÆüËÜ¸ì¤Ë¤¹¤ë¤«¤É¤¦¤«
+					; TRR$B$N%a%C%;!<%8$rF|K\8l$K$9$k$+$I$&$+(B
 
 ;; Hooks
 (defvar TRR:load-hook nil
@@ -88,27 +88,27 @@ If nil, coloring not support.")
 
 ;; TRR flags
 (defvar TRR:start-flag nil "whether TRR is running")
-					; TRR¤¬»Ï¤Þ¤Ã¤Æ¤¤¤ë¤«¤É¤¦¤«
+					; TRR$B$,;O$^$C$F$$$k$+$I$&$+(B
 (defvar TRR:quit-flag nil "whether TRR will be finished")
-					; TRR¤ò½ªÎ»¤µ¤»¤ë¤«¤É¤¦¤«
+					; TRR$B$r=*N;$5$;$k$+$I$&$+(B
 (defvar TRR:update-flag nil "whether the record is broken")
-					; µ­Ï¿¹¹¿·¤·¤¿¤«¤É¤¦¤«
+					; $B5-O?99?7$7$?$+$I$&$+(B
 (defvar TRR:pass-flag nil "whether current-step is passed")
-					; ¥¹¥Æ¥Ã¥×¤ò¥Ñ¥¹¤·¤¿¤«¤É¤¦¤«
+					; $B%9%F%C%W$r%Q%9$7$?$+$I$&$+(B
 (defvar TRR:cheat-flag nil "whether TRR text is too easy")
-					; ¤¤¤ó¤Á¤­¤·¤¿¤«¤É¤¦¤«
+					; $B$$$s$A$-$7$?$+$I$&$+(B
 (defvar TRR:beginner-flag nil "whether this play is the first time")
-					; ½é¤á¤ÆTRR¤ò¤·¤¿¤«¤É¤¦¤«
+					; $B=i$a$F(BTRR$B$r$7$?$+$I$&$+(B
 (defvar TRR:random-flag t "whether TRR choose the position in file at random")
-					; Ê¸½ñ¤Î°ÌÃÖ¤ò¥é¥ó¥À¥à¤ËÁª¤Ö¤«¤É¤¦¤«
+					; $BJ8=q$N0LCV$r%i%s%@%`$KA*$V$+$I$&$+(B
 (defvar TRR:secret-flag t "whether the record will be updated")
-					; update¤·¤Ê¤¤¤«¤É¤¦¤«
+					; update$B$7$J$$$+$I$&$+(B
 (defvar TRR:typist-flag t "whether you are Typist")
-					; ¥¿¥¤¥Ô¥¹¥È¤òÌÜ»Ø¤¹¤«¤É¤¦¤«
+					; $B%?%$%T%9%H$rL\;X$9$+$I$&$+(B
 (defvar TRR:small-window-flag nil "whether the frame is too narrow")
-					; ¥¦¥£¥ó¥É¥¦¤¬¾®¤µ¤¤¤«¤É¤¦¤«
+					; $B%&%#%s%I%&$,>.$5$$$+$I$&$+(B
 (defvar TRR:skip-session-flag nil "whether TRR skip session")
-					; ¥»¥Ã¥·¥ç¥ó¤ò¼Â¹Ô¤·¤Ê¤¤¤«¤É¤¦¤«
+					; $B%;%C%7%g%s$r<B9T$7$J$$$+$I$&$+(B
 
 ;; face support
 (if TRR:text-color-name
@@ -140,21 +140,21 @@ If nil, coloring not support.")
 
 ;; Buffer names
 (defun TRR:trainer-menu-buffer ()
-  (if TRR:japanese "¥¿¥¤¥×¡õ¥á¥Ë¥å¡¼" "Type & Menu"))
+  (if TRR:japanese "$B%?%$%W!u%a%K%e!<(B" "Type & Menu"))
 (defun TRR:result-buffer ()
-  (if TRR:japanese "-----·ë²Ì-----" "----Result----"))
+  (if TRR:japanese "-----$B7k2L(B-----" "----Result----"))
 (defun TRR:data-buffer ()
-  (if TRR:japanese "À®ÀÓÉ½¼¨" "Display Record"))
+  (if TRR:japanese "$B@.@SI=<((B" "Display Record"))
 (defun TRR:message-buffer ()
-  (if TRR:japanese "¥á¥Ã¥»¡¼¥¸" "TRR Message"))
+  (if TRR:japanese "$B%a%C%;!<%8(B" "TRR Message"))
 (defun TRR:log-buffer ()
-  (if TRR:japanese "²áµî¤ÎÀ®ÀÓ" "Past Records"))
+  (if TRR:japanese "$B2a5n$N@.@S(B" "Past Records"))
 (defun TRR:graph-buffer ()
-  (if TRR:japanese "¥°¥é¥Õ" "Display Graph"))
+  (if TRR:japanese "$B%0%i%U(B" "Display Graph"))
 (defun TRR:record-buffer ()
-  (if TRR:japanese "¼Â¹Ôµ­Ï¿!!" "Result!!"))
+  (if TRR:japanese "$B<B9T5-O?(B!!" "Result!!"))
 (defun TRR:display-buffer ()
-  (if TRR:japanese "³Æ¼ïÉ½¼¨" "TRR Display"))
+  (if TRR:japanese "$B3F<oI=<((B" "TRR Display"))
 (defvar TRR:text-file-buffer "")
 
 ;; Window Configuration
@@ -165,37 +165,37 @@ If nil, coloring not support.")
 
 ;; Variables for Session
 (defvar TRR:eval               -1 "Score")
-					; º£²ó½Ð¤·¤¿ÅÀ¿ô
+					; $B:#2s=P$7$?E@?t(B
 (defvar TRR:whole-char-count   0 "the number of characters of the text")
-					; ¥Æ¥­¥¹¥È¤ÎÊ¸»ú¿ô
+					; $B%F%-%9%H$NJ8;z?t(B
 (defvar TRR:correct-char-count 0 "the number of correct typed characters")
-					; Àµ¤·¤¯ÆþÎÏ¤·¤¿Ê¸»ú¿ô
+					; $B@5$7$/F~NO$7$?J8;z?t(B
 (defvar TRR:start-time         0 "start time for a session")
-					; TRR(1 session)¤ò½é¤á¤¿»þ´Ö
+					; TRR(1 session)$B$r=i$a$?;~4V(B
 (defvar TRR:end-time           0 "end time for a session")
-					; TRR(1 session)¤ò½ª¤¨¤¿»þ´Ö
+					; TRR(1 session)$B$r=*$($?;~4V(B
 (defvar TRR:miss-type-ratio    0 "miss type ratio")
-					; ¥ß¥¹Î¨ (/1000)
+					; $B%_%9N((B (/1000)
 (defvar TRR:type-speed         0 "the number of characters typed per minute")
-					;¥¿¥¤¥Ô¥ó¥°Â®ÅÙ¡ÊÊ¸»ú¿ô¡¿Ê¬¡Ë
+					;$B%?%$%T%s%0B.EY!JJ8;z?t!?J,!K(B
 (defvar TRR:ch                 0)
 
 ;; Variables for STEP
 (defvar TRR:steps                       0 "current step")
-					; ¸½ºß¤Î¥¹¥Æ¥Ã¥×
+					; $B8=:_$N%9%F%C%W(B
 (defvar TRR:times-of-current-step       0
   "total times of the execution of TRR in this step")
-					; ¤³¤Î¥¹¥Æ¥Ã¥×¤Ç¤Î¼Â¹Ô²ó¿ô
+					; $B$3$N%9%F%C%W$G$N<B9T2s?t(B
 (defvar TRR:time-of-current-step        0
   "total time of the execution of TRR in this step")
-					; ¤³¤Î¥¹¥Æ¥Ã¥×¤Ç¤Î¼Â¹Ô»þ´Ö
+					; $B$3$N%9%F%C%W$G$N<B9T;~4V(B
 (defvar TRR:whole-chars-of-current-step 0 "the number of typing in this step")
-					; ¤³¤Î¥¹¥Æ¥Ã¥×¤Ç¤Î¥¿¥¤¥×²ó¿ô
+					; $B$3$N%9%F%C%W$G$N%?%$%W2s?t(B
 (defvar TRR:whole-miss-of-current-step  0
    "the number of miss typing in this step")
-					; ¤³¤Î¥¹¥Æ¥Ã¥×¤Ç¤Î¥ß¥¹¥¿¥¤¥×²ó¿ô
+					; $B$3$N%9%F%C%W$G$N%_%9%?%$%W2s?t(B
 (defvar TRR:times-for-message                  0 "used in trr-message.el")
-					; trr-message.el¤Ç»ÈÍÑ¤¹¤ë
+					; trr-message.el$B$G;HMQ$9$k(B
 
 ;; other variables
 (defvar TRR:directory
@@ -209,26 +209,26 @@ If nil, coloring not support.")
       (setq drt (substring drt 0 (1- (length drt)))))
     (concat drt "/")))
 (defvar TRR:number-of-text-lines 0 "(the number of lines in text) - 18")
-					; ¥Æ¥­¥¹¥È¤Î¹Ô¿ô - 18
+					; $B%F%-%9%H$N9T?t(B - 18
 (defvar TRR:text-lines           0
-   "the number of lines which should be displayed") ; É½¼¨¤¹¤Ù¤­¥Æ¥­¥¹¥È¤Î¹Ô¿ô
+   "the number of lines which should be displayed") ; $BI=<($9$Y$-%F%-%9%H$N9T?t(B
 (defvar TRR:total-times          0 "times of execution of TRR")
-					; º£¤Þ¤Ç¤Î¼Â¹Ô²ó¿ô
+					; $B:#$^$G$N<B9T2s?t(B
 (defvar TRR:total-time           0 "total time of execution of TRR")
-					; º£¤Þ¤Ç¤Î¼Â¹Ô»þ´Ö
+					; $B:#$^$G$N<B9T;~4V(B
 (defvar TRR:high-score           -1 "User's High Score")
-					; º£²ó¤Þ¤Ç¤ÎºÇ¹âÆÀÅÀ
+					; $B:#2s$^$G$N:G9bF@E@(B
 (defvar TRR:high-score-old       -1  "User's previous High Score")
-					; Á°²ó¤Þ¤Ç¤ÎºÇ¹âÆÀÅÀ
+					; $BA02s$^$G$N:G9bF@E@(B
 (defvar TRR:elapsed-time         0)
 (defvar TRR:debug		 nil)
 
 ;; other functions
 (defun TRR:history-of-trr ()
   (if TRR:japanese
-      " Original(Pascal&C) -- ¼é»³ ¹×\n\
- Original Author -- ²ÃÆ£¸¦»ù\n\
- Rewritten by -- »³ËÜÂÙ±§ \n\
+      " Original(Pascal&C) -- $B<i;3(B $B9W(B\n\
+ Original Author -- $B2CF#8&;y(B\n\
+ Rewritten by -- $B;3K\BY1'(B \n\
  TRR Emacs19 Ver.1.1 Apr. 1996"
     " Original(Pascal&C) -- Moriyama Mitugu\n\
  Original Author -- Katou Kenji\n\
@@ -236,10 +236,10 @@ If nil, coloring not support.")
  TRR Emacs19 Ver.1.1 Apr. 1996"))
 (defun TRR:current-trr ()
   (cond
-   (TRR:typist-flag (if TRR:japanese "¾åµé¼Ô" "Typist"))
-   (TRR:secret-flag (if TRR:japanese "ÈëÌ©¼çµÁ¼Ô" "Sealed"))
-   (TRR:random-flag (if TRR:japanese "Ãæµé¼Ô" "Trainee"))
-   (t               (if TRR:japanese "½éµé¼Ô" "Novice"))))
+   (TRR:typist-flag (if TRR:japanese "$B>e5i<T(B" "Typist"))
+   (TRR:secret-flag (if TRR:japanese "$BHkL)<g5A<T(B" "Sealed"))
+   (TRR:random-flag (if TRR:japanese "$BCf5i<T(B" "Trainee"))
+   (t               (if TRR:japanese "$B=i5i<T(B" "Novice"))))
 (defun TRR:random-num ()
   (let (num
 	(num1 (random))
@@ -255,20 +255,15 @@ If nil, coloring not support.")
 ;; files used by TRR
 (defconst TRR:update-program (concat TRR:bin-directory "trr_update"))
 (defconst TRR:format-program (concat TRR:bin-directory "trr_format"))
-(defconst TRR:message-file (concat TRR:directory "trr-mesg"))
-(defconst TRR:files-file (concat TRR:directory "trr-files"))
-(defconst TRR:menus-file (concat TRR:directory "trr-menus"))
-(defconst TRR:graphs-file (concat TRR:directory "trr-graphs"))
-(defconst TRR:sessions-file (concat TRR:directory "trr-sess"))
 (defconst TRR:select-text-file (concat TRR:directory "CONTENTS"))
 
 ;;; load files
 (require 'picture)
-(load TRR:message-file)
-(load TRR:files-file)
-(load TRR:menus-file)
-(load TRR:graphs-file)
-(load TRR:sessions-file)
+(require 'trr-mesg)
+(require 'trr-files)
+(require 'trr-menus)
+(require 'trr-graphs)
+(require 'trr-sess)
 (run-hooks 'TRR:load-hook)
 
 ;;; Scoring function
@@ -288,7 +283,7 @@ If nil, coloring not support.")
   (delete-other-windows)
   (if (or (< (window-height) 20) (< (window-width) 60))
       (message (if TRR:japanese
-		   "¥¦¥£¥ó¥É¥¦¤¬¾®¤µ¤¹¤®¤ë¤ï¡£"
+		   "$B%&%#%s%I%&$,>.$5$9$.$k$o!#(B"
 		 "Too narrow to execute TRR!"))
     (unwind-protect
 	(progn
@@ -319,7 +314,7 @@ If nil, coloring not support.")
 
 
 (defun TRR:start ()
-  (message (if TRR:japanese "¤Á¤ç¤Ã¤ÈÂÔ¤Ã¤Æ..." "Wait a moment!"))
+  (message (if TRR:japanese "$B$A$g$C$HBT$C$F(B..." "Wait a moment!"))
   (setq TRR:secret-flag nil)
   (setq TRR:random-flag t)
   (setq TRR:typist-flag nil)
@@ -402,7 +397,7 @@ If nil, coloring not support.")
     (force-mode-line-update)
     (TRR:write-graph TRR:list-of-eval 0
 		     (if TRR:japanese
-			 "º£²ó¤ÎÆÀÅÀ¥°¥é¥Õ"
+			 "$B:#2s$NF@E@%0%i%U(B"
 		       "Score Graph for this time"))
     (recenter -1) ; move point to the last line of the graph-buffer
     (other-window 1)
@@ -416,10 +411,10 @@ If nil, coloring not support.")
     (insert 
      (format (if TRR:japanese
 		 "\
- ¥¹¥Æ¥Ã¥×¡§%5d\n\
-  ÌÜ  É¸ ¡§%5dÅÀ\n\
- ºÇ¹âµ­Ï¿¡§%5dÅÀ\n\
-  trr²ó¿ô¡§%5d²ó"
+ $B%9%F%C%W!'(B%5d\n\
+  $BL\(B  $BI8(B $B!'(B%5d$BE@(B\n\
+ $B:G9b5-O?!'(B%5d$BE@(B\n\
+  trr$B2s?t!'(B%5d$B2s(B"
 	       "\
   STEP  : %5d\n\
  Target : %5dpt.\n\
@@ -481,10 +476,10 @@ If nil, coloring not support.")
       (forward-line (- 3 (window-height))) ; if lines flood
       (delete-region (point-min) (point)) ; then delete heading records
       (if TRR:japanese
-	  (insert (TRR:current-trr) "¸þ¤±¥¿¥¤¥×¥È¥ì¡¼¥Ê\n")
+	  (insert (TRR:current-trr) "$B8~$1%?%$%W%H%l!<%J(B\n")
 	(insert "TRR for " (TRR:current-trr) "\n"))
       (if TRR:japanese
-	  (insert "step ²ó  Ê¬   Â®  Î¨   ÆÍÇËÆü\n")
+	  (insert "step $B2s(B  $BJ,(B   $BB.(B  $BN((B   $BFMGKF|(B\n")
 	(insert "step tms min spd rate date\n"))))
 
 
@@ -530,7 +525,7 @@ If nil, coloring not support.")
 	(if (not (= wc 0))
 	    (insert (format (if TRR:japanese
 				"\
- %2d:  %3d²ó  %3dÊ¬  %4d»ú/Ê¬  %3d.%d%%  %4dÅÀ   %s   %4d\n"
+ %2d:  %3d$B2s(B  %3d$BJ,(B  %4d$B;z(B/$BJ,(B  %3d.%d%%  %4d$BE@(B   %s   %4d\n"
 			      "\
  %2d:  %3dtms %3dmin %4dtyp/mn %3d.%d%%      %4dpts. %s   %4d\n")
 			    curstep
@@ -550,7 +545,7 @@ If nil, coloring not support.")
       (insert 
        (format (if TRR:japanese
 		   "\
-ºÇ¹âµ­Ï¿¡§%dÅÀ,   Áí¼Â¹Ô²ó¿ô¡§%d²ó,   Áí¼Â¹Ô»þ´Ö¡§%dÊ¬\n"
+$B:G9b5-O?!'(B%d$BE@(B,   $BAm<B9T2s?t!'(B%d$B2s(B,   $BAm<B9T;~4V!'(B%d$BJ,(B\n"
 		 "\
 HighScore: %dpts, total times: %dtimes, total time: %dmin\n")
 	       (if (< TRR:high-score 0) 0 TRR:high-score)
@@ -562,11 +557,11 @@ HighScore: %dpts, total times: %dtimes, total time: %dmin\n")
 			      TRR:top-face-name))
       (if TRR:japanese
 	  (insert (concat (TRR:current-trr)
-			  "ÍÑ¤Ç¤Î "
+			  "$BMQ$G$N(B "
 			  TRR:text-name
-			  " ¤Îµ­Ï¿¤À¤è\n\n\
-step   ¼Â¹Ô   ¼Â¹Ô     Ê¿¶Ñ     Ê¿¶Ñ     Ê¿¶Ñ     ÆÍÇËÆü   ÆÍÇË\n\
-       ²ó¿ô   »þ´Ö   ÆþÎÏÂ®ÅÙ  ¥ß¥¹Î¨    ÆÀÅÀ              ÆÀÅÀ\n\
+			  " $B$N5-O?$@$h(B\n\n\
+step   $B<B9T(B   $B<B9T(B     $BJ?6Q(B     $BJ?6Q(B     $BJ?6Q(B     $BFMGKF|(B   $BFMGK(B\n\
+       $B2s?t(B   $B;~4V(B   $BF~NOB.EY(B  $B%_%9N((B    $BF@E@(B              $BF@E@(B\n\
 ---------------------------------------------------------------\n"))
 	(insert (concat "TRR for "
 			(TRR:current-trr)
@@ -582,10 +577,10 @@ step   times  minutes  speed  miss-ratio avg-score date  the Score\n\
   (insert
    (format (if TRR:japanese
 	       "\
- ½êÍ×»þ´Ö¡§%4d ÉÃ\n\
-  ¥ß¥¹Î¨ ¡§%2d.%1d %%\n\
- »ú¿ô¡¿Ê¬¡§%4d\n\
-  É¾  ²Á ¡§%4d %s"
+ $B=jMW;~4V!'(B%4d $BIC(B\n\
+  $B%_%9N((B $B!'(B%2d.%1d %%\n\
+ $B;z?t!?J,!'(B%4d\n\
+  $BI>(B  $B2A(B $B!'(B%4d %s"
 	     "\
   Time   : %4d seconds\n\
 miss rate: %2d.%1d %%\n\
@@ -620,7 +615,7 @@ speed    : %4d\n\
       (progn
 	(setq TRR:prev-win-conf nil)
 	(run-hooks 'TRR:end-hook)
-	(message (if TRR:japanese "¤Þ¤¿²ñ¤¦Æü¤Þ¤Ç...." "See you later...")))))
+	(message (if TRR:japanese "$B$^$?2q$&F|$^$G(B...." "See you later...")))))
 
 
 (defun TRR:kill-buffer (buffer)
@@ -700,7 +695,7 @@ speed    : %4d\n\
 	  (erase-buffer)
 	  (while (> count 0)
 	    (if TRR:japanese
-		(insert "  0    0      0      0     0 ¤Õ¤¡¤¤¤È!\n")
+		(insert "  0    0      0      0     0 $B$U$!$$$H(B!\n")
 	      (insert "  0    0      0      0     0 cheers!  \n"))
 	    (setq count (1- count)))))
     (goto-char (point-max))
@@ -715,7 +710,7 @@ speed    : %4d\n\
 		    (TRR:get-date)))
     (if TRR:pass-flag ; if current step is passed, new entry should be added.
 	(if TRR:japanese
-	    (insert "  0    0      0      0     0 ¤Õ¤¡¤¤¤È!\n")
+	    (insert "  0    0      0      0     0 $B$U$!$$$H(B!\n")
 	  (insert "  0    0      0      0     0 cheers!  \n")))))
 
 
@@ -760,7 +755,7 @@ speed    : %4d\n\
 (defun TRR:get-date ()
   (if (not TRR:pass-flag) ; in not passed
       (if TRR:japanese
-	  "¤Õ¤¡¤¤¤È!"
+	  "$B$U$!$$$H(B!"
 	"cheers!  ")
     (let ((in-string (current-time-string))
 	  (out-string nil))

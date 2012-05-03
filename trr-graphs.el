@@ -10,7 +10,7 @@
 
 ;; Variables for writing graphs
 (defvar TRR:skipped-step         0 "the number of skipped steps")
-					; ¥¹¥­¥Ã¥×¤·¤¿¥¹¥Æ¥Ã¥×¿ô
+					; $B%9%-%C%W$7$?%9%F%C%W?t(B
 (defvar TRR:list-of-eval       nil)
 (defvar TRR:list-of-speed      nil)
 (defvar TRR:list-of-miss       nil)
@@ -31,7 +31,7 @@
   (other-window 1)
   (TRR:write-graph TRR:list-of-eval 0
 		   (if TRR:japanese
-		       "º£²ó¤ÎÆÀÅÀ¥°¥é¥Õ"
+		       "$B:#2s$NF@E@%0%i%U(B"
 		     "Score Graph for this play"))
   (other-window 1))
 
@@ -117,23 +117,23 @@
       (let ((i graph-steps))
 	(while (> i 0)
 	  (insert (if TRR:japanese
-		      "     ¨­\n"
+		      "     $B(-(B\n"
 		      "      |\n")
 		  (format "%4d" (+ min (* i scale-y)))
 		  (if TRR:japanese
-		      " ¨²\n"
+		      " $B(2(B\n"
 		    "  +\n"))
 	  (setq i (1- i)))
 	(insert (if TRR:japanese
-		    "     ¨­\n"
+		    "     $B(-(B\n"
 		  "      |\n")
 		(format "%4d" min)
 		(if TRR:japanese
-		    " ¨±"
+		    " $B(1(B"
 		  "  +"))
 	(while (< i horizontal-steps)
 	  (insert (if TRR:japanese
-		      "¨¬¨µ"
+		      "$B(,(5(B"
 		    "---+"))
 	  (setq i (1+ i)))
 	(insert (format "\n   %4d" move-count))
@@ -169,11 +169,11 @@
 		    (progn (delete-char 1)
 			   (setq j (point))
 			   (insert (if TRR:japanese
-				       "¡ú"
+				       "$B!z(B"
 				     "*")))
 		  (setq j (point))
 		  (insert (if TRR:japanese
-			      "¡ú"
+			      "$B!z(B"
 			    "*")))
 		(and window-system
 		     TRR:graph-color-name
@@ -189,7 +189,7 @@
   (erase-buffer)
   (insert (if TRR:japanese
 	      "\
-½ç°Ì\t¥í¥°¥¤¥óÌ¾\t¥¹¥³¥¢\tstep\tÁí²ó¿ô\tÁí»þ´Ö\t  ÆüÉÕ,   »þ´Ö\n"
+$B=g0L(B\t$B%m%0%$%sL>(B\t$B%9%3%"(B\tstep\t$BAm2s?t(B\t$BAm;~4V(B\t  $BF|IU(B,   $B;~4V(B\n"
 	    "\
 Order\tName\t\tScore\tstep\ttimes\ttime\tdate,     hour\n"))
   (insert-file-contents TRR:score-file)
@@ -294,3 +294,7 @@ Order\tName\t\tScore\tstep\ttimes\ttime\tdate,     hour\n"))
  	(forward-line)
 	(setq curpoint (point))
 	(setq curstep (+ curstep 1))))))
+
+
+(provide 'trr-graphs)
+;;; trr-graphs.el ends here

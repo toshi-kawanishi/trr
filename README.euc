@@ -1,3 +1,9 @@
+TRR19 1.0 beta5 for Emacs20
+
+Emacs20で動くように作者の山本さんの指摘のとおり、すべてのelファイルを
+nkfを使ってJISコードに変更しました。
+
+
 README.euc file for TRR19 1.0 beta5
 
 1. 前の version からの変更による注意点

@@ -50,29 +50,29 @@
     (goto-char (point-min))
     (if TRR:japanese
 	(insert (TRR:current-trr)
-		"¸þ¤±¥¿¥¤¥×¥È¥ì¡¼¥Ê¡¼¡§\n\n¥Æ¥­¥¹¥È¤ÎÁªÂò¡§\n")
+		"$B8~$1%?%$%W%H%l!<%J!<!'(B\n\n$B%F%-%9%H$NA*Br!'(B\n")
       (insert "TRR for " (TRR:current-trr) ": \n\nChoose a text: \n"))
     (goto-char (point-max))
     (insert (if TRR:japanese
-		(concat "\n\n  ²¿¤«Æþ¤ì¤ÆÍß¤·¤¤ document ¤¬¤¢¤ì¤Ð\n "
+		(concat "\n\n  $B2?$+F~$l$FM_$7$$(B document $B$,$"$l$P(B\n "
 			TRR:installator
-			" ¤Þ¤Ç¤ªÌä¤¤¹ç¤ï¤»²¼¤µ¤¤¡£\n")
+			" $B$^$G$*Ld$$9g$o$;2<$5$$!#(B\n")
 	      (concat "\n  If you have some document to use in TRR, consult with\n "
 		      TRR:installator
 		      "\n")))
     (insert (if TRR:japanese
-		"\n³Æ¼ï¤ÎÀßÄê¡§\n  97. TRR¤Î½ªÎ»\n  98. ÀßÄêÃÍ¤ÎÊÑ¹¹\n"
+		"\n$B3F<o$N@_Dj!'(B\n  97. TRR$B$N=*N;(B\n  98. $B@_DjCM$NJQ99(B\n"
 	      "\nSet up: \n  97. Quit TRR\n  98. Change options.\n"))
     (if (not TRR:skip-session-flag)
 	(insert (if TRR:japanese
-		    "  99. ¥Æ¥­¥¹¥ÈÁªÂò¸å¥á¥Ë¥å¡¼²èÌÌ¤Ë°Ü¹Ô\n"
+		    "  99. $B%F%-%9%HA*Br8e%a%K%e!<2hLL$K0\9T(B\n"
 		  "  99. move to menu after choose a text\n"))
       (insert (if TRR:japanese
-		  "\n¥Æ¥­¥¹¥ÈÁªÂò¸å¥á¥Ë¥å¡¼²èÌÌ¤Ë°Ü¹Ô"
+		  "\n$B%F%-%9%HA*Br8e%a%K%e!<2hLL$K0\9T(B"
 		"\nmove to menu after choose a text")))
     (setq num 
 	  (if TRR:japanese
-	      (TRR:get-answer "¤É¤ì¤Ë¤¹¤ë¡© " "¤Ï¤Ã¤­¤ê¤·¤Ê¤µ¤¤¡ª" 99)
+	      (TRR:get-answer "$B$I$l$K$9$k!)(B " "$B$O$C$-$j$7$J$5$$!*(B" 99)
 	    (TRR:get-answer "Input an integer: " "Don't hesitate!" 99)))
     (if (and (or (< num 0) (> num max-num))
 	     (/= num 97)
@@ -80,8 +80,8 @@
 	     (or TRR:skip-session-flag
 		 (/= num 99)))
 	(setq num (if TRR:japanese
-		      (TRR:get-answer "¤â¤¦°ìÅÙÁª¤ó¤Ç "
-				      "¥Æ¥­¥¹¥È¤·¤«Áª¤Ù¤Ê¤¤¤ï"
+		      (TRR:get-answer "$B$b$&0lEYA*$s$G(B "
+				      "$B%F%-%9%H$7$+A*$Y$J$$$o(B"
 				      max-num)
 		    (TRR:get-answer "Choose again: "
 				    "Text is the only way left to you!"
@@ -109,34 +109,34 @@
   (let (num)
     (insert (if TRR:japanese
 		(concat "\
-¼¡¤ÎÃæ¤«¤éÁª¤ó¤Ç²¼¤µ¤¤¡£\n\
+$B<!$NCf$+$iA*$s$G2<$5$$!#(B\n\
 \n\
-1. ½éµé¼Ô¸þ¤±¤Î¥¿¥¤¥×¥È¥ì¡¼¥Ê\n\
-   É¾²Á´Ø¿ô¤Ï¡ÊÂÇÊ¸»ú¿ô¡Ý¡Ê¸íÂÇ¿ô¡ö£±£°¡Ë¡Ë¡ö£¶£°¡¿¡ÊÉÃ¿ô¡Ë\n\
-   ¥Æ¥­¥¹¥È¤Ï¥¹¥Æ¥Ã¥×Ëè¤ËÆ±¤¸¤â¤Î¤òÉ½¼¨\n\
+1. $B=i5i<T8~$1$N%?%$%W%H%l!<%J(B\n\
+   $BI>2A4X?t$O!JBGJ8;z?t!]!J8mBG?t!v#1#0!K!K!v#6#0!?!JIC?t!K(B\n\
+   $B%F%-%9%H$O%9%F%C%WKh$KF1$8$b$N$rI=<((B\n\
 \n\
-2. Ãæµé¼Ô¸þ¤±¤Î¥¿¥¤¥×¥È¥ì¡¼¥Ê¡Ê¥Ç¥Õ¥©¡¼¥ë¥È¤Ï¤³¤ì¤ËÀßÄê¤µ¤ì¤ë¡Ë\n\
-   É¾²Á´Ø¿ô¤Ï¡ÊÂÇÊ¸»ú¿ô¡Ý¡Ê¸íÂÇ¿ô¡ö£±£°¡Ë¡Ë¡ö£¶£°¡¿¡ÊÉÃ¿ô¡Ë\n\
+2. $BCf5i<T8~$1$N%?%$%W%H%l!<%J!J%G%U%)!<%k%H$O$3$l$K@_Dj$5$l$k!K(B\n\
+   $BI>2A4X?t$O!JBGJ8;z?t!]!J8mBG?t!v#1#0!K!K!v#6#0!?!JIC?t!K(B\n\
 \n\
-3. ¾åµé¼Ô¸þ¤±¤Î¥¿¥¤¥×¥È¥ì¡¼¥Ê\n\
-   É¾²Á´Ø¿ô¤Ï¡ÊÂÇÊ¸»ú¿ô¡Ý¡Ê¸íÂÇ¿ô¡ö£µ£°¡Ë¡Ë¡ö£¶£°¡¿¡ÊÉÃ¿ô¡Ë\n\
-   £±²ó¤Î¼Â¹Ô¤ÇÉ¬Í×¤Ê¥¿¥¤¥×ÎÌ¤¬Â¿¤¤\n\
+3. $B>e5i<T8~$1$N%?%$%W%H%l!<%J(B\n\
+   $BI>2A4X?t$O!JBGJ8;z?t!]!J8mBG?t!v#5#0!K!K!v#6#0!?!JIC?t!K(B\n\
+   $B#12s$N<B9T$GI,MW$J%?%$%WNL$,B?$$(B\n\
 \n\
-4. ÈëÌ©¼çµÁ¼Ô¸þ¤±¤Î¥¿¥¤¥×¥È¥ì¡¼¥Ê\n\
-   ½éµé¼Ô¸þ¤±¤Î¥¿¥¤¥×¥È¥ì¡¼¥Ê¤ÈÆ±¤¸¤Ç¤¢¤ë¤¬¡¢\n\
-   ¥Ï¥¤¥¹¥³¥¢¤ÎÅÐÏ¿¤ò¹Ô¤Ê¤ï¤Ê¤¤\n\
+4. $BHkL)<g5A<T8~$1$N%?%$%W%H%l!<%J(B\n\
+   $B=i5i<T8~$1$N%?%$%W%H%l!<%J$HF1$8$G$"$k$,!"(B\n\
+   $B%O%$%9%3%"$NEPO?$r9T$J$o$J$$(B\n\
 \n"
 			(if TRR:return-is-space
-			    "5. [toggle] ¹ÔËö¤Î¥ê¥¿¡¼¥ó¤Ï¥¹¥Ú¡¼¥¹¤ÇÂåÂØ¤Ç¤­¤ë\n\n"
-			  "5. [toggle] ¹ÔËö¤Î¥ê¥¿¡¼¥ó¤Ï¥ê¥¿¡¼¥ó¤ò²¡¤µ¤Ê¤±¤ì¤Ð¤Ê¤é¤Ê¤¤\n\n")
+			    "5. [toggle] $B9TKv$N%j%?!<%s$O%9%Z!<%9$GBeBX$G$-$k(B\n\n"
+			  "5. [toggle] $B9TKv$N%j%?!<%s$O%j%?!<%s$r2!$5$J$1$l$P$J$i$J$$(B\n\n")
 			"\
-6. [toggle] ¥á¥Ã¥»¡¼¥¸¤ÏÆüËÜ¸ì¤ÇÉ½¼¨\n\n"
+6. [toggle] $B%a%C%;!<%8$OF|K\8l$GI=<((B\n\n"
 			(if TRR:ding-when-miss
-			    "7. [toggle] ´Ö°ã¤¨¤¿»þ¤Ë ding(²»¤òÌÄ¤é¤¹) ¤¹¤ë\n\n"
-			  "7. [toggle] ´Ö°ã¤¨¤¿»þ¤Ë ding(²»¤òÌÄ¤é¤¹) ¤·¤Ê¤¤\n\n")
+			    "7. [toggle] $B4V0c$($?;~$K(B ding($B2;$rLD$i$9(B) $B$9$k(B\n\n"
+			  "7. [toggle] $B4V0c$($?;~$K(B ding($B2;$rLD$i$9(B) $B$7$J$$(B\n\n")
 			(if TRR:un-hyphenate
-			    "8. [toggle] ¥Ï¥¤¥Õ¥Í¡¼¥È¤µ¤ì¤¿Ã±¸ì¤ò¸µ¤ËÌá¤¹\n"
-			  "8. [toggle] ¥Ï¥¤¥Õ¥Í¡¼¥·¥ç¥ó¤ò»Ä¤·¤¿¤Þ¤Þ¤Ë¤¹¤ë\n"))
+			    "8. [toggle] $B%O%$%U%M!<%H$5$l$?C18l$r85$KLa$9(B\n"
+			  "8. [toggle] $B%O%$%U%M!<%7%g%s$r;D$7$?$^$^$K$9$k(B\n"))
 	      (concat "Select a number (1 - 8)\n\n\
 1. TRR for Novice.\n\
 The function which evaluate your score is,\n\
@@ -171,7 +171,7 @@ at the end of a line.\n\n")
     "8. [toggle] deny hyphenation from text\n"
     "8. [toggle] leave hyphenated words untouched\n"))))
   (setq num (if TRR:japanese
-                (TRR:get-answer "¤É¤ì¤Ë¤¹¤ë¡© " "¤¤¤Ã¤¿¤¤¤É¤ì¤Ë¤¹¤ë¤Î¡©" 8)
+                (TRR:get-answer "$B$I$l$K$9$k!)(B " "$B$$$C$?$$$I$l$K$9$k$N!)(B" 8)
                 (TRR:get-answer "which do you want to change? "
                                 "Don't waver!" 8)))
   (cond
@@ -220,17 +220,17 @@ at the end of a line.\n\n")
   (erase-buffer)
   (if TRR:japanese
       (insert "\
- 1. ½ªÎ»               2. ¼Â¹Ô                3. ¥Ï¥¤¥¹¥³¥¢\n\
- 4. Ê¿¶ÑÂ®ÅÙ¥°¥é¥Õ     5. Ê¿¶Ñ¥ß¥¹Î¨¥°¥é¥Õ    6. Ê¿¶ÑÆÀÅÀ¥°¥é¥Õ\n\
- 7. ¼Â¹Ô»þ´Ö¥°¥é¥Õ     8. ¼Â¹Ô²ó¿ô¥°¥é¥Õ      9. ÆÍÇËÅÀ¿ô¥°¥é¥Õ\n\
-10. ²áµî¤ÎÀ®ÀÓ        11. ¥Æ¥­¥¹¥È¤ÎÊÑ¹¹     12. ÀßÄê¤ÎÊÑ¹¹")
+ 1. $B=*N;(B               2. $B<B9T(B                3. $B%O%$%9%3%"(B\n\
+ 4. $BJ?6QB.EY%0%i%U(B     5. $BJ?6Q%_%9N(%0%i%U(B    6. $BJ?6QF@E@%0%i%U(B\n\
+ 7. $B<B9T;~4V%0%i%U(B     8. $B<B9T2s?t%0%i%U(B      9. $BFMGKE@?t%0%i%U(B\n\
+10. $B2a5n$N@.@S(B        11. $B%F%-%9%H$NJQ99(B     12. $B@_Dj$NJQ99(B")
     (insert "\
  1. Quit	       2. Execute again	       3. High Scores\n\
  4. Typing Speed Graph 5. Freq. of Typo Graph  6. Score Graph\n\
  7. Time Graph	       8. Num. of Trial Graph  9. Breaking Score Graph\n\
 10. Past results      11. Choose another text 12. Change options"))
   (let ((num (if TRR:japanese
-		 (TRR:get-answer "¤É¤¦¤¹¤ë¤Î¡© " "¤Ï¤Ã¤­¤ê¤·¤Ê¤µ¤¤¡ª" 12)
+		 (TRR:get-answer "$B$I$&$9$k$N!)(B " "$B$O$C$-$j$7$J$5$$!*(B" 12)
 	       (TRR:get-answer "What do you want to do? "
 			       "Commit yourself!" 12))))
     (cond
@@ -249,7 +249,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-speed TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡ÝÊ¿¶Ñ¥¹¥Ô¡¼¥É¡ÊÊ¸»ú¡¿Ê¬¡Ë¥°¥é¥Õ"
+				   "$B%9%F%C%W!]J?6Q%9%T!<%I!JJ8;z!?J,!K%0%i%U(B"
 				 "STEP <-> SPEED(type / minute) Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -259,7 +259,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-miss TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡ÝÊ¿¶Ñ¥ß¥¹Î¨¡Ê/1000¡Ë¥°¥é¥Õ"
+				   "$B%9%F%C%W!]J?6Q%_%9N(!J(B/1000$B!K%0%i%U(B"
 				 "STEP <-> avg.Miss-ratio(/1000) Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -269,7 +269,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-average TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡ÝÊ¿¶ÑÆÀÅÀ¥°¥é¥Õ"
+				   "$B%9%F%C%W!]J?6QF@E@%0%i%U(B"
 				 "STEP <-> avg.SCORE Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -279,7 +279,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-time TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡Ý¼Â¹Ô»þ´Ö¡ÊÊ¬¡Ë¥°¥é¥Õ"
+				   "$B%9%F%C%W!]<B9T;~4V!JJ,!K%0%i%U(B"
 				 "STEP <-> TIME(min) Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -289,7 +289,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-times TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡Ý¼Â¹Ô²ó¿ô¥°¥é¥Õ"
+				   "$B%9%F%C%W!]<B9T2s?t%0%i%U(B"
 				 "STEP <-> times (the number of execution of TRR) Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -299,7 +299,7 @@ at the end of a line.\n\n")
       (TRR:get-graph-points)
       (TRR:write-graph TRR:list-of-value TRR:skipped-step
 		       (concat (if TRR:japanese
-				   "¥¹¥Æ¥Ã¥×¡ÝÆÍÇËÅÀ¿ô¥°¥é¥Õ"
+				   "$B%9%F%C%W!]FMGKE@?t%0%i%U(B"
 				 "STEP <-> ACHIEVEMENT_SCORE Graph")
 			       "\t" TRR:text-name))
       (TRR:select-menu))
@@ -328,3 +328,7 @@ at the end of a line.\n\n")
       (TRR:select-text)
       (not TRR:quit-flag))
      )))
+
+
+(provide 'trr-menus)
+;;; trr-menus.el ends here
